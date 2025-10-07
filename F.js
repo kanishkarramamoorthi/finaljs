@@ -1,38 +1,37 @@
+
 try {
-  let name = prompt("Enter your name:");
+
+  let name= prompt("Enter your name:");
   let email = prompt("Enter your email:");
-  let age = parseInt(prompt("Enter your age:"));
+  let age = prompt("Enter your age:");
+  age=Number(age);
   if (!name || !email || isNaN(age)) {
     throw new Error("All fields are required!");
   } else if (age < 12) {
     throw new Error("Age must be 12 or above!");
   }
-  score=0;
-  let v=prompt("Q1:What is the largest animal in the world?\na)Elephant\nb)Blue Whale\nc)Shark\nd)Giraffe")
-if(v==='b'){
-    alert("✅Correct Answer!");
-       score++;
-  }
-  else{
-    alert("❌Wrong Answer!");
-  }
-  let b=prompt("Q2:How many days are there in a leap year?\na)364\nb)365\nc)366\nd)367")
-  if(b==='c'){
-    alert("✅Correct Answer!");
-       score++;
-  }
-  else{
-    alert("❌Wrong Answer!");
-  }
-  let d=prompt("Q3:Which is the fastest land animal?\na)Cheetah\nb)Lion\nc)Tiger\nd)Horse")
-  if(d==='a'){
-    alert("✅Correct Answer!");
-       score++;
-  }
-  else{
-    alert("❌Wrong Answer!");
-  }
-  
+  let score = 0
+  let questions = [
+    { q: "Which is the largest ancient dynasty?\n a)Ming\n b)Qin\n c)Han\n d)Zhou", ans: "b" },
+    { q: "Which is the largest continent?\n a)Asia\n b)Africa\n c)North America\n d)Australia", ans: "a" },
+    { q: "Which is the longest river in the world?\n a)Amazon\n b)Nile\n c)Yangtze\n d)Mississippi", ans: "b" },
+    { q: "Which planet is known as the Red Planet?\n a)Earth\n b)Mars\n c)Venus\n d)Jupiter", ans: "b" },
+    { q: "Who is the father of computers?\n a)Alan Turing\n b)Charles Babbage\n c)Bill Gates\n d)Steve Jobs", ans: "b" },
+    { q: "Which is the national animal of India?\n a)Lion\n b)Elephant\n c)Tiger\n d)Peacock", ans: "c" },
+    { q: "Which gas is essential for breathing?\n a)Carbon dioxide\n b)Oxygen\n c)Nitrogen\n d)Hydrogen", ans: "b" },
+    { q: "What is the capital of Japan?\n a)Seoul\n b)Tokyo\n c)Beijing\n d)Bangkok", ans: "b" },
+    { q: "Which is the fastest land animal?\n a)Cheetah\n b)Lion\n c)Horse\n d)Tiger", ans: "a" },
+    { q: "Who invented the light bulb?\n a)Thomas Edison\n b)Newton\n c)Einstein\n d)Tesla", ans: "a" }
+  ];
+  let randomQuestions = questions.sort(() => 0.5 - Math.random()).slice(0, 3);
+  randomQuestions.forEach(item => {
+    let answer = prompt(item.q);if (answer.toLowerCase() === item.ans) {
+      alert("✅ Correct Answer!");
+      score++;
+    } else {
+      alert("❌ Wrong Answer!");
+    }
+  });
   let percentage = (score / 3) * 100;
   let grade = "";
 
@@ -62,16 +61,15 @@ if(v==='b'){
 
   showResult.then(data => {
     alert(`RESULT SUMMARY\n
-Name: ${data.name}
-Email: ${data.email}
-Score: ${data.score}/${3}
-Percentage: ${data.percentage.toFixed(2)}%
-Grade: ${data.grade}
-Timestamp: ${data.timestamp}`);
-
-    
-  });
-
-} catch (err) {
+Name: ${name}
+Email: ${email}
+Score: ${score}/${3}
+Percentage: ${percentage}%
+Grade: ${grade}
+Timestamp: ${timestamp}`);
+      showResult.write(obj.student);
+});
+} 
+catch (err) {
   alert("Error: " + err.message);
-}``
+}
