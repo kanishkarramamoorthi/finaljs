@@ -67,7 +67,6 @@ Score: ${score}/${3}
 Percentage: ${percentage}%
 Grade: ${grade}
 Timestamp: ${timestamp}`);
-      showResult.write(obj.student);
 });
 } 
 catch (err) {
